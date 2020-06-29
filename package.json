@@ -1,0 +1,23 @@
+{
+  "name": "bootcamp-manager-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon dist/app.ts",
+    "start": "node src/app.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ITbootcampSvea/bootcamp-manager-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ITbootcampSvea/bootcamp-manager-server/issues"
+  },
+  "homepage": "https://github.com/ITbootcampSvea/bootcamp-manager-server#readme"
+}
