@@ -3,18 +3,25 @@ import * as HomeworkController from "../controllers/HomeworkController";
 
 const router = express.Router();
 
-const path = "/homeworkstudent";
+const path = {
+    homeworkmaster:"/homeworkmaster",
+    homeworkstudent: "/homeworkmaster",
+}
 
-router.get(path+"/:id", HomeworkController.getHomeworkMasterByID);
-router.post(path,HomeworkController.createHomeworkMaster);
+//HomeworkMASTER
+
+router.get(`${path.homeworkmaster}/:id`, HomeworkController.getHomeworkMasterByID);
+router.post(path.homeworkmaster, HomeworkController.createHomeworkMaster);
+router.put(`${path.homeworkmaster}/:id`, HomeworkController.updateHomeworkMasterByID);
+
+//HomeworkMASTER
+
+router.get(`${path.homeworkstudent}/:id`, HomeworkController.getHomeworkStudentByStudentID);
+router.post(path.homeworkstudent, HomeworkController.createHomeworkStudent);
+router.put(`${path.homeworkstudent}/:id`, HomeworkController.updateHomeworkStudentByStudentID);
+
 
 export default router;
 
-// router.get('/homeworkstudent', (req:Request, res:Response, next:NextFunction)=>{
-//     res.send('Hello there :) You get master homework object');
-// });
 
-
-// router.post('/',(req:Request,res:Response)=>{
-// })
 

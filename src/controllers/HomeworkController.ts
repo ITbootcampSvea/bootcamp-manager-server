@@ -1,5 +1,8 @@
 import express, { Response, Request, NextFunction, response } from "express";
-import HomeworkMasterModel from "../models/HomeworkMasterModel";
+import HomeworkMasterModel, { IHomeworkMaster } from "../models/HomeworkMasterModel";
+import { Resolver } from "dns";
+
+//----------HomeworkMaster Controllers---------------------
 
 export function getHomeworkMasterByID(req:Request,res:Response){
 
@@ -7,18 +10,36 @@ export function getHomeworkMasterByID(req:Request,res:Response){
 export function getHomeworkMasterByGen(req:Request,res:Response){
 
 }
-export function createHomeworkMaster(req:Request,res:Response){
-    
-    return HomeworkMasterModel.create({
-        title: req.body.title,
-        author:req.body.author,
-        dueto:req.body.dueto,
-        file:req.body.file
-    }).then(res.json);
-}   
-export function updateHomeworkMaster(){
+export function getHomeworkMasterByAuthor(req:Request,res:Response){
 
 }
-export function updateHomeworkMasterByID(){
+export async function createHomeworkMaster(req:Request,res:Response){
+    const homework = await HomeworkMasterModel.create({
+        title: req.body.title,
+        generation: req.body.generation,
+        author:req.body.author,
+        dueto:req.body.dueto,
+        file:req.body.file,
+        description: req.body.description
+    });
+    res.json(homework);
+}   
 
+export function updateHomeworkMasterByID(){
+    
+}
+
+
+//----------HomeworkStudent Controllers---------------------
+
+export function getHomeworkStudentByStudentID(req:Request,res:Response){
+
+}
+
+export async function createHomeworkStudent(req:Request,res:Response){
+
+}   
+
+export function updateHomeworkStudentByStudentID(){
+    
 }
