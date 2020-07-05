@@ -1,5 +1,5 @@
 "use strict";
-import express,{Application, Router} from 'express'
+import express,{Application} from 'express'
 import http from 'http';
 import socketIO from 'socket.io';
 import mongoose from 'mongoose';
@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(router);
 
 mongoose.connect('mongodb+srv://admin:admin@bootcamperclaster.4oxwb.mongodb.net/bootcamperDataBase?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true },()=>console.log('connected to database'));
+mongoose.set('useCreateIndex', true);
 
 // (mongodb+srv://admin:1234@bootcamperclaster.4oxwb.mongodb.net/<dbname>?retryWrites=true&w=majority)
 

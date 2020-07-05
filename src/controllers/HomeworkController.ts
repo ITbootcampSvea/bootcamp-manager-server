@@ -1,6 +1,6 @@
-import express, { Response, Request, NextFunction, response } from "express";
-import HomeworkMasterModel, { IHomeworkMaster } from "../models/HomeworkMasterModel";
-import { Resolver } from "dns";
+import { Response, Request } from "express";
+import HomeworkMasterModel from "../models/HomeworkMasterModel";
+import HomeworkStudentModel from "../models/HomeworkStudentModel";
 
 //----------HomeworkMaster Controllers---------------------
 
@@ -37,7 +37,15 @@ export function getHomeworkStudentByStudentID(req:Request,res:Response){
 }
 
 export async function createHomeworkStudent(req:Request,res:Response){
-
+    const homework = await HomeworkStudentModel.create({
+        studentID:req.body.studentID,
+        masterID:req.body.masterID,
+        gitLink:req.body.gitLink,
+        comment:req.body.comment,
+        suggestion:req.body.suggestion,
+        status:req.body.status
+    });
+    res.json(homework);
 }   
 
 export function updateHomeworkStudentByStudentID(){
