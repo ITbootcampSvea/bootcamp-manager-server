@@ -8,6 +8,7 @@ export interface IUser extends Document{
     username:string,
     password:string,
     img:string,
+    active:boolean
 }
 
 export const UserSchema:Schema = new Schema({
@@ -18,6 +19,7 @@ export const UserSchema:Schema = new Schema({
     username:{type:String, required:true},
     password:{type:String, required:true},
     img:{type:String, required:true},
+    active:{type:Boolean, required:true},
 }, { versionKey: false, collection:'users'})
 
 export default mongoose.model<IUser>('Users',UserSchema);

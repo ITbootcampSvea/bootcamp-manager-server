@@ -5,12 +5,14 @@ import socketIO from 'socket.io';
 import mongoose from 'mongoose';
 //import routes modules
 import router from './routes/Routes';
+import cors from 'cors';
 require('dotenv/config')
 
 const app:Application = express();
 const port = process.env.PORT || 4000;
 
-//parse body to JSON
+//Middlewares
+app.use(cors());
 app.use(express.json());    
 
 //use API routes
@@ -20,7 +22,6 @@ app.use(router);
 mongoose.connect(<string>process.env.DB_CONNECTION,{ useNewUrlParser: true, useUnifiedTopology: true },()=>console.log('connected to database'));
 mongoose.set('useCreateIndex', true);
 
-// (mongodb+srv://admin:1234@bootcamperclaster.4oxwb.mongodb.net/<dbname>?retryWrites=true&w=majority)
 
 const server = http.createServer(app);
 const io = socketIO(server);

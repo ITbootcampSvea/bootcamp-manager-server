@@ -2,52 +2,103 @@ import { Response, Request } from "express";
 import HomeworkMasterModel from "../models/HomeworkMasterModel";
 import HomeworkStudentModel from "../models/HomeworkStudentModel";
 
+
 //----------HomeworkMaster Controllers---------------------
 
-export function getHomeworkMasterByID(req:Request,res:Response){
 
-}
-export function getHomeworkMasterByGen(req:Request,res:Response){
-
-}
-export function getHomeworkMasterByAuthor(req:Request,res:Response){
-
-}
 export async function createHomeworkMaster(req:Request,res:Response){
-    const homework = await HomeworkMasterModel.create({
-        title: req.body.title,
-        generation: req.body.generation,
-        author:req.body.author,
-        dueto:req.body.dueto,
-        file:req.body.file,
-        description: req.body.description
-    });
-    res.json(homework);
-}   
+    try{
+        const homework = await HomeworkMasterModel.create(req.body);
+        res.json(homework);
+    }
+    catch (err){
+        res.json({message: err});
+    }
+} 
 
-export function updateHomeworkMasterByID(){
-    
+export async function getHomeworkMasters(req:Request,res:Response){
+    try{
+        const homeworks = await HomeworkMasterModel.find(req.body);
+        res.json(homeworks);
+    }
+    catch (err){
+        res.json({message: err});
+    }
+}
+
+export async function getHomeworkMasterByID(req:Request,res:Response){
+    try{
+        const homework = await HomeworkMasterModel.findById(req.params.id);
+        res.json(homework);
+    }
+    catch (err){
+        res.json({message: err});
+    }
+}
+
+
+export async function updateHomeworkMasterByID(req:Request,res:Response){
+    try{
+        const homework = await HomeworkMasterModel.updateOne({_id:req.params.id},{$set:req.body});
+        res.json(homework);
+    }
+    catch (err){
+        res.json({message: err});
+    }
+}
+
+export async function deleteHomeworkMasterByID(req:Request,res:Response){
+    try{
+        const homework = await HomeworkMasterModel.deleteOne({_id:req.params.id});
+        res.json(homework);
+    }
+    catch (err){
+        res.json({message: err});
+    }
 }
 
 
 //----------HomeworkStudent Controllers---------------------
 
-export function getHomeworkStudentByStudentID(req:Request,res:Response){
 
+
+export async function getHomeworkStudentByID(req:Request,res:Response){
+    try{
+        const homework = await HomeworkStudentModel.findById(req.params.id);
+        res.json(homework);
+    }
+    catch (err){
+        res.json({message: err});
+    }   
+}
+
+export async function getHomeworkStudents(req:Request,res:Response){
+    try{
+        const homeworks = await HomeworkStudentModel.find(req.body);
+        res.json(homeworks);
+    }
+    catch (err){
+        res.json({message: err});
+    }
 }
 
 export async function createHomeworkStudent(req:Request,res:Response){
-    const homework = await HomeworkStudentModel.create({
-        studentID:req.body.studentID,
-        masterID:req.body.masterID,
-        gitLink:req.body.gitLink,
-        comment:req.body.comment,
-        suggestion:req.body.suggestion,
-        status:req.body.status
-    });
-    res.json(homework);
+    try{
+        const homework = await HomeworkStudentModel.create(req.body);
+        res.json(homework);
+    }
+    catch (err){
+        res.json({message: err});
+    }
+    
 }   
 
-export function updateHomeworkStudentByStudentID(){
-    
+export async function updateHomeworkStudentByID(req:Request,res:Response){
+    try{
+        const homework = await HomeworkMasterModel.updateOne({_id:req.params.id},{$set:req.body});
+        res.json(homework);
+    }
+    catch (err){
+        res.json({message: err});
+    }
 }

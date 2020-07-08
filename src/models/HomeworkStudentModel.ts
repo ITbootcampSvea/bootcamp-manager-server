@@ -2,6 +2,7 @@ import mongoose, { Schema, Document} from 'mongoose';
 
 type status = "assigned"|"submited"|"uncompleted"|"completed"|"undone";
 
+
 export interface IHomeworkStudent extends Document{
     studentID:string,
     masterID:string,
