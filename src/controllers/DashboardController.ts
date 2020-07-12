@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import DashboardItemModel from "../models/DashboardItemModel";
-
+import { io } from "../server";
 
 
 //----------HomeworkMaster Controllers---------------------
@@ -8,8 +8,10 @@ import DashboardItemModel from "../models/DashboardItemModel";
 
 export async function createDashboardItem(req:Request,res:Response){
     try{
-        const item = await DashboardItemModel.create({...req.body, datetime: new Date()});
+        const item = await DashboardItemModel.create({...req.body, datetime: new Date()});  
+        io.emit('newdashcard',item);              
         res.json(item);
+        
     }
     catch (err){
         res.json({message: err});
