@@ -1,6 +1,8 @@
 import { Response, Request } from "express";
 import HomeworkMasterModel from "../models/HomeworkMasterModel";
 import HomeworkStudentModel from "../models/HomeworkStudentModel";
+import { io } from "../server";
+import messagesIO from "../utils/messagesIO";
 
 
 //----------HomeworkMaster Controllers---------------------
@@ -9,10 +11,11 @@ import HomeworkStudentModel from "../models/HomeworkStudentModel";
 export async function createHomeworkMaster(req:Request,res:Response){
     try{
         const homework = await HomeworkMasterModel.create(req.body);
+        io.emit(messagesIO.newHomework ,homework); 
         res.json(homework);
     }
     catch (err){
-        res.json({message: err});
+        res.status(500).json({message: err});
     }
 } 
 
@@ -22,7 +25,7 @@ export async function getHomeworkMasters(req:Request,res:Response){
         res.json(homeworks);
     }
     catch (err){
-        res.json({message: err});
+        res.status(500).json({message: err});
     }
 }
 
@@ -32,7 +35,7 @@ export async function getHomeworkMasterByID(req:Request,res:Response){
         res.json(homework);
     }
     catch (err){
-        res.json({message: err});
+        res.status(500).json({message: err});
     }
 }
 
@@ -40,20 +43,22 @@ export async function getHomeworkMasterByID(req:Request,res:Response){
 export async function updateHomeworkMasterByID(req:Request,res:Response){
     try{
         const homework = await HomeworkMasterModel.updateOne({_id:req.params.id},{$set:req.body});
+        io.emit(messagesIO.editHomework ,homework); 
         res.json(homework);
     }
     catch (err){
-        res.json({message: err});
+        res.status(500).json({message: err});
     }
 }
 
 export async function deleteHomeworkMasterByID(req:Request,res:Response){
     try{
         const homework = await HomeworkMasterModel.deleteOne({_id:req.params.id});
+        io.emit(messagesIO.deleteHomework ,homework); 
         res.json(homework);
     }
     catch (err){
-        res.json({message: err});
+        res.status(500).json({message: err});
     }
 }
 

@@ -51,7 +51,10 @@ router.patch(`${path.homeworkstudent}/:id`, HomeworkController.updateHomeworkStu
 
 //TestMASTER
 
+router.get(path.testmaster, TestController.getTestMasters);
+router.get(`${path.testmaster}/:id`, TestController.getTestMasterByID);
 router.post(path.testmaster, TestController.createTestMaster);
+router.patch(`${path.testmaster}/:id`,TestController.deleteTestMaster);
 
 //TestSTUDENT
 

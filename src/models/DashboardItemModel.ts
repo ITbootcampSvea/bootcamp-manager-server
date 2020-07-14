@@ -3,6 +3,7 @@ import mongoose, { Schema, Document} from 'mongoose';
 export interface IDashboardItem extends Document{
     title:string,
     author:string,
+    editedby:string,
     datetime:Date,
     links:string[],
     description:string,
@@ -12,6 +13,7 @@ export interface IDashboardItem extends Document{
 export const DashboardItemSchema:Schema = new Schema({
     title:{type:String, required:true},
     author:{type:String, required:true},
+    editedby:{type:String, required:false},
     datetime:{type:Date, required:true},
     links:{type:Array, required:false},
     description:{type:String, required:false},
