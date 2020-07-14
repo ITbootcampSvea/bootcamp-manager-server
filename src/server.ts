@@ -9,7 +9,7 @@ require('dotenv/config')
 const app:Application = express();
 const port = process.env.PORT || 4000;
 
-//Middlewares
+//Middlewares  -- promena
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());    
 
